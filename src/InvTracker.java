@@ -24,22 +24,53 @@ public class InvTracker {
 
 
     }
-    public void add(long num, int n){
-        for (InvItem s: items){
-            if(s.getId() == num){
-            s.add(n);
+
+    public void add(long num, int n) {
+        for (InvItem s : items) {
+            if (s.getId() == num) {
+                s.add(n);
 
 
-
-            }else{
+            } else {
                 new InvItem(num).add(n);
+                InvItem[] newSize = new InvItem[items.length + 1];
+                //create new Array with size of original array+1
+                //loop will copy everything from items into newSize
+                for (int i = 0; i < items.length; i++) {
+                    newSize[i] = items[i];
+                    //put newly sized array into old array
+                    items = newSize;
 
+
+                }
 
 
             }
 
 
         }
+
+
+    }
+
+    public void remove(long num, int n) {
+        for (InvItem s : items) {
+            if (s.getId() == num && s.getQuantity() >= n) {
+                //substract n from s' quantity variable
+                s.drop(n);
+            } else {
+                System.out.println("no matching record found");
+
+
+            }
+
+
+        }
+
+
+    }
+
+    public void list(){
 
 
 
