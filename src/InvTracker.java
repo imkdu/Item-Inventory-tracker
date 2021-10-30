@@ -71,13 +71,23 @@ public class InvTracker {
     }
 
     public void list(){
+        for(InvItem s: items){
+            if(items.length == 0){
+                System.out.println("no item records to display");
+
+            }else{
+                System.out.println(s.getId() + " "+s.getName() + " "+ s.getQuantity());
 
 
+            }
 
-    }
+
+        }
+ }
 
 
     public static void main(String[] args) {
+
 
     }
 
