@@ -8,6 +8,19 @@ public class InvTracker {
     Scanner scanner = new Scanner(System.in);
     StringTokenizer st;
 
+    public InvTracker(){
+    scanner = new Scanner(System.in);
+    items = new InvItem[0];
+    }
+
+    public static void main(String[] args) {
+        while(true){
+
+
+
+        }
+
+    }
 
     public void name(long num, String str) {
         //Assigns the String as the name field for every element in items with id equal to the parameter long
@@ -86,10 +99,7 @@ public class InvTracker {
  }
 
 
-    public static void main(String[] args) {
 
-
-    }
 
 
 }
