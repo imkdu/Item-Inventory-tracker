@@ -24,6 +24,26 @@ public class InvTracker {
 
 
     }
+    public void add(long num, int n){
+        for (InvItem s: items){
+            if(s.getId() == num){
+            s.add(n);
+
+
+
+            }else{
+                new InvItem(num).add(n);
+
+
+
+            }
+
+
+        }
+
+
+
+    }
 
 
     public static void main(String[] args) {
