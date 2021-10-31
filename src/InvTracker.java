@@ -8,15 +8,15 @@ public class InvTracker {
     Scanner scanner = new Scanner(System.in);
     StringTokenizer st;
 
-    public InvTracker(){
-    scanner = new Scanner(System.in);
-    items = new InvItem[0];
+    public InvTracker() {
+        scanner = new Scanner(System.in);
+        items = new InvItem[0];
     }
 
     public static void main(String[] args) {
-        while(true){
-
-
+        InvTracker inv = new InvTracker();
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
 
         }
 
@@ -83,23 +83,20 @@ public class InvTracker {
 
     }
 
-    public void list(){
-        for(InvItem s: items){
-            if(items.length == 0){
+    public void list() {
+        for (InvItem s : items) {
+            if (items.length == 0) {
                 System.out.println("no item records to display");
 
-            }else{
-                System.out.println(s.getId() + " "+s.getName() + " "+ s.getQuantity());
+            } else {
+                System.out.println(s.getId() + " " + s.getName() + " " + s.getQuantity());
 
 
             }
 
 
         }
- }
-
-
-
+    }
 
 
 }
