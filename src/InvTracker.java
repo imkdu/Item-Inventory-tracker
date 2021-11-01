@@ -1,4 +1,4 @@
-//KEVIN DU, 10/30/2021
+//KEVIN DU, 11/01/2021
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -14,13 +14,37 @@ public class InvTracker {
     }
 
     public static void main(String[] args) {
+
         InvTracker inv = new InvTracker();
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("input something. remember to remove this!");
+        String input = scanner.nextLine();
+        StringTokenizer st = new StringTokenizer(input,"");
+        String[] arr = new String[3];
+
+        //"method()" [value1] [value2]
+         while (true) {
+             //while st has more tokens, store them in the array, so we can call the elements later
+                 for(int i=0;st.hasMoreTokens(); i++){
+                     arr[i] = st.nextToken();
+                 }
+                 if(arr[0].equalsIgnoreCase("name")){
+                     System.out.println("test! you got it");
+
+                 }
+                    break;
+
+
+
+
+             }
+
+
+
 
         }
 
-    }
+
 
     public void name(long num, String str) {
         //Assigns the String as the name field for every element in items with id equal to the parameter long
