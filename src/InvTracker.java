@@ -28,13 +28,33 @@ public class InvTracker {
                  for(int i=0;st.hasMoreTokens(); i++){
                      arr[i] = st.nextToken();
                  }
+
                  if(arr[0].equalsIgnoreCase("name")){
                      inv.name(Long.parseLong(arr[1]),arr[2]);
+                     break;
 
 
                  }else if (arr[0].equalsIgnoreCase("add")){
                      inv.add(Long.parseLong(arr[1]),Integer.parseInt(arr[2]));
+                    break;
 
+
+
+
+             }
+                 else if (arr[0].equalsIgnoreCase("remove")){
+                     inv.remove(Long.parseLong(arr[1]),Integer.parseInt(arr[2]));
+                     break;
+
+
+
+
+                 }else if(arr[0].equalsIgnoreCase("list")){
+                     for(int s: ){
+
+
+
+                     }
 
 
 
