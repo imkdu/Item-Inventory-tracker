@@ -1,5 +1,6 @@
 //KEVIN DU, 11/01/2021
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -19,57 +20,58 @@ public class InvTracker {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input something. remember to remove this!");
         String input = scanner.nextLine();
-        StringTokenizer st = new StringTokenizer(input," ");
+        StringTokenizer st = new StringTokenizer(input, " ");
         String[] arr = new String[2];
 
         //"method()" [value1] [value2]
-         while(true) {
-             //while st has more tokens, store them in the array, so we can call the elements later
-                 for(int i=0;st.hasMoreTokens(); i++){
-                     arr[i] = st.nextToken();
-                 }
-
-                 if(arr[0].equalsIgnoreCase("name")){
-                     inv.name(Long.parseLong(arr[1]),arr[2]);
-                     break;
+        while (true) {
 
 
-                 }else if (arr[0].equalsIgnoreCase("add")){
-                     inv.add(Long.parseLong(arr[1]),Integer.parseInt(arr[2]));
+
+
+            //while st has more tokens, store them in the array, so we can call the elements later
+            for (int i = 0; st.hasMoreTokens(); i++) {
+                if(!st.hasMoreTokens()){
+                    System.out.println("Error! No input detected!");
                     break;
 
 
 
 
-             }
-                 else if (arr[0].equalsIgnoreCase("remove")){
-                     inv.remove(Long.parseLong(arr[1]),Integer.parseInt(arr[2]));
-                     break;
+                }
+                arr[i] = st.nextToken();
+            }
+
+            if (arr[0].equalsIgnoreCase("name")) {
+                inv.name(Long.parseLong(arr[1]), arr[2]);
+                break;
 
 
+            } else if (arr[0].equalsIgnoreCase("add")) {
+                inv.add(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
+                break;
 
 
-                 }else if(arr[0].equalsIgnoreCase("list")){
-                     for(int s: ){
+            } else if (arr[0].equalsIgnoreCase("remove")) {
+                inv.remove(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
+                break;
 
 
-
-                     }
-
-
-
-
-             }
+            } else if (arr[0].equalsIgnoreCase("list")) {
+                    inv.list();
                     break;
 
 
 
-             }
+                }
 
 
+            }
 
 
         }
+
+
 
 
 
