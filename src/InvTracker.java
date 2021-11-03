@@ -19,21 +19,28 @@ public class InvTracker {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input something. remember to remove this!");
         String input = scanner.nextLine();
-        StringTokenizer st = new StringTokenizer(input,"");
-        String[] arr = new String[3];
+        StringTokenizer st = new StringTokenizer(input," ");
+        String[] arr = new String[2];
 
         //"method()" [value1] [value2]
-         while (true) {
+         while(true) {
              //while st has more tokens, store them in the array, so we can call the elements later
                  for(int i=0;st.hasMoreTokens(); i++){
                      arr[i] = st.nextToken();
                  }
                  if(arr[0].equalsIgnoreCase("name")){
-                     System.out.println("test! you got it");
+                     inv.name(Long.parseLong(arr[1]),arr[2]);
 
-                 }
+
+                 }else if (arr[0].equalsIgnoreCase("add")){
+                     inv.add(Long.parseLong(arr[1]),Integer.parseInt(arr[2]));
+
+
+
+
+
+             }
                     break;
-
 
 
 
