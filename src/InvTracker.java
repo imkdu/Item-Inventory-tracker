@@ -16,54 +16,46 @@ public class InvTracker {
 
     public static void main(String[] args) {
 
+
         InvTracker inv = new InvTracker();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("input something. remember to remove this!");
-        String input = scanner.nextLine();
+        String input = scanner.next();
         StringTokenizer st = new StringTokenizer(input, " ");
-        String[] arr = new String[2];
+        String[] arr = new String[3];
 
         //"method()" [value1] [value2]
         while (true) {
 
 
-
-
             //while st has more tokens, store them in the array, so we can call the elements later
             for (int i = 0; st.hasMoreTokens(); i++) {
-                if(!st.hasMoreTokens()){
-                    System.out.println("Error! No input detected!");
-                    break;
-
-
+                arr[i] = st.nextToken();
+                System.out.println(arr[0]+arr[1]+arr[2]);
 
 
                 }
-                arr[i] = st.nextToken();
-            }
+
 
             if (arr[0].equalsIgnoreCase("name")) {
+                System.out.println("you typed name");
                 inv.name(Long.parseLong(arr[1]), arr[2]);
-                break;
+
 
 
             } else if (arr[0].equalsIgnoreCase("add")) {
                 inv.add(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
-                break;
+
 
 
             } else if (arr[0].equalsIgnoreCase("remove")) {
                 inv.remove(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
-                break;
+
 
 
             } else if (arr[0].equalsIgnoreCase("list")) {
-                    inv.list();
-                    break;
+                inv.list();
 
 
-
-                }
 
 
             }
@@ -72,7 +64,7 @@ public class InvTracker {
         }
 
 
-
+    }
 
 
     public void name(long num, String str) {
@@ -137,13 +129,22 @@ public class InvTracker {
     }
 
     public void list() {
-        for (InvItem s : items) {
-            if (items.length == 0) {
-                System.out.println("no item records to display");
+
+//        for (InvItem s : items) {
+//            if (items.length == 0) {
+//                System.out.println("no item records to display");
+
+
+        //PICK OFF HERE. the expression inside the if loop is items[i].getQuantity == 0!!!
+        if(){
+
+
+
+        }
+
 
             } else {
                 System.out.println(s.getId() + " " + s.getName() + " " + s.getQuantity());
-
 
             }
 
