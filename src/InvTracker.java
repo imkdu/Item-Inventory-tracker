@@ -20,7 +20,7 @@ public class InvTracker {
 
         InvTracker inv = new InvTracker();
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.next();
+        String input = scanner.nextLine();
         StringTokenizer st = new StringTokenizer(input, " ");
         String[] arr = new String[3];
 
@@ -31,44 +31,45 @@ public class InvTracker {
             //while st has more tokens, store them in the array, so we can call the elements later
 
 
-//            try{
-            for (int i = 0; st.hasMoreTokens(); i++) {
-                arr[i] = st.nextToken();
-                System.out.println(arr[0] + arr[1] + arr[2]);
+            try {
+                for (int i = 0; st.hasMoreTokens(); i++) {
+                    arr[i] = st.nextToken();
+
+
+
+
+
+
+                }
+
+
+                if (arr[0].equalsIgnoreCase("name")) {
+                    System.out.println("you typed name");
+                    inv.name(Long.parseLong(arr[1]), arr[2]);
+
+
+                } else if (arr[0].equalsIgnoreCase("add")) {
+                    inv.add(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
+
+
+                } else if (arr[0].equalsIgnoreCase("remove")) {
+                    inv.remove(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
+
+
+                } else if (arr[0].equalsIgnoreCase("list")) {
+                    inv.list();
+
+
+                }
+
+
+            }catch (NumberFormatException e){
+                System.out.println("Wrong format. Please enter a long");
+                return;
 
 
             }
-
-
-            if (arr[0].equalsIgnoreCase("name")) {
-                System.out.println("you typed name");
-                inv.name(Long. parseLong(arr[1]), arr[2]);
-
-
-            } else if (arr[0].equalsIgnoreCase("add")) {
-                inv.add(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
-
-
-            } else if (arr[0].equalsIgnoreCase("remove")) {
-                inv.remove(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
-
-
-            } else if (arr[0].equalsIgnoreCase("list")) {
-                inv.list();
-
-
-            }
-
-
-//        } catch(Exception e){
-//                System.out.println("Invalid command");
-//
-//
-//
-//            }
         }
-
-
 
 
     }
@@ -91,6 +92,7 @@ public class InvTracker {
     }
 
     public void add(long num, int n) {
+        System.out.println("add activated!");
         for (InvItem s : items) {
             if (s.getId() == num) {
                 s.add(n);
@@ -136,94 +138,86 @@ public class InvTracker {
     }
 
     public void list() {
-        if(items.length == 0){
+        if (items.length == 0) {
             System.out.println("no records to display");
 
 
+        } else {
+            for (int i = 0; i < items.length; i++) {
+                System.out.println(items[i].getId() + " " + items[i].getName() + " " + items[i].getQuantity() + "\n");
 
 
-        }else{
-           for(int i=0;i < items.length; i++){
-               System.out.println(items[i].getId()+ " "+items[i].getName()+ " "+ items[i].getQuantity()+"\n");
-
-
-           }
+            }
 
         }
     }
 
-//        for (InvItem s : items) {
-//            if (items.length == 0) {
-//                System.out.println("no item records to display");
-
-//PICK OFF HERE. the expression inside the if loop is items[i].getQuantity == 0!!!
 
 
+
+}
+
+
+class InvItem {
+    private long id;
+    private String name;
+    private int quantity;
+
+    public InvItem(long id) {
+        this.id = id;
+        this.name = "";
+        this.quantity = 0;
+
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+
+
+    }
+
+    public long getId() {
+        return this.id;
+
+
+    }
+
+    public void setId(long id) {
+        this.id = id;
+
+
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+
+
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+
+
+    }
+
+    public void add(int add) {
+        this.quantity += add;
+
+    }
+
+    public void drop(int drop) {
+        this.quantity -= drop;
 
 
     }
 
 
-    class InvItem {
-        private long id;
-        private String name;
-        private int quantity;
-
-        public InvItem(long id) {
-            this.id = id;
-            this.name = "";
-            this.quantity = 0;
-
-
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return this.name;
-
-
-        }
-
-        public long getId() {
-            return this.id;
-
-
-        }
-
-        public void setId(long id) {
-            this.id = id;
-
-
-        }
-
-        public int getQuantity() {
-            return this.quantity;
-
-
-        }
-
-        public void setQuantity(int quantity) {
-            this.quantity = quantity;
-
-
-        }
-
-        public void add(int add) {
-            this.quantity += add;
-
-        }
-
-        public void drop(int drop) {
-            this.quantity -= drop;
-
-
-        }
-
-
-    }
+}
 
 
 
