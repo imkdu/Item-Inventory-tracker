@@ -1,6 +1,5 @@
 //KEVIN DU, 11/01/2021
 
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -20,31 +19,38 @@ public class InvTracker {
 
         InvTracker inv = new InvTracker();
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        StringTokenizer st = new StringTokenizer(input, " ");
-        String[] arr = new String[3];
+
 
         //"method()" [value1] [value2]
         while (true) {
+            String[] arr = new String[3];
+            String input = scanner.nextLine();
+            StringTokenizer st = new StringTokenizer(input, " ");
+            int numTokens = st.countTokens();
+            try {
+            if(numTokens > 3){
+                throw new ArrayIndexOutOfBoundsException();
 
 
+            }
+            System.out.println(numTokens);
             //while st has more tokens, store them in the array, so we can call the elements later
 
+                for (int i = 0; i < numTokens; i++) {
 
-            try {
-                for (int i = 0; st.hasMoreTokens(); i++) {
+
+
                     arr[i] = st.nextToken();
+                    if(!"name".equals(arr[0]) && !"add".equals(arr[0]) && !"remove".equals(arr[0]) && !"list".equals(arr[0])){
+                        throw new ArrayIndexOutOfBoundsException();
 
-
-
-
-
+                    }
+                    System.out.println(arr[i]);
 
                 }
 
 
                 if (arr[0].equalsIgnoreCase("name")) {
-                    System.out.println("you typed name");
                     inv.name(Long.parseLong(arr[1]), arr[2]);
 
 
@@ -65,8 +71,10 @@ public class InvTracker {
 
             }catch (NumberFormatException e){
                 System.out.println("Wrong format. Please enter a long");
-                return;
 
+
+            }catch(ArrayIndexOutOfBoundsException e){
+                System.out.println("Invalid command");
 
             }
         }
@@ -109,14 +117,13 @@ public class InvTracker {
                     items = newSize;
 
 
+
                 }
 
 
             }
 
-
         }
-
 
     }
 
@@ -143,8 +150,8 @@ public class InvTracker {
 
 
         } else {
-            for (int i = 0; i < items.length; i++) {
-                System.out.println(items[i].getId() + " " + items[i].getName() + " " + items[i].getQuantity() + "\n");
+            for (InvItem item : items) {
+                System.out.println(item.getId() + " " + item.getName() + " " + item.getQuantity() + "\n");
 
 
             }
