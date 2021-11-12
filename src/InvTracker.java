@@ -27,25 +27,26 @@ public class InvTracker {
             String input = scanner.nextLine();
             StringTokenizer st = new StringTokenizer(input, " ");
             int numTokens = st.countTokens();
+
             try {
-            if(numTokens > 3){
-                throw new ArrayIndexOutOfBoundsException();
+                if (numTokens > 3) {
+                    throw new ArrayIndexOutOfBoundsException();
 
 
-            }
-            System.out.println(numTokens);
-            //while st has more tokens, store them in the array, so we can call the elements later
+                }
+                //while st has more tokens, store them in the array, so we can call the elements later
 
                 for (int i = 0; i < numTokens; i++) {
 
 
-
                     arr[i] = st.nextToken();
-                    if(!"name".equals(arr[0]) && !"add".equals(arr[0]) && !"remove".equals(arr[0]) && !"list".equals(arr[0])){
+
+
+                    if (!"name".equals(arr[0]) && !"add".equals(arr[0]) && !"remove".equals(arr[0]) && !"list".equals(arr[0])) {
                         throw new ArrayIndexOutOfBoundsException();
 
                     }
-                    System.out.println(arr[i]);
+
 
                 }
 
@@ -54,27 +55,26 @@ public class InvTracker {
                     inv.name(Long.parseLong(arr[1]), arr[2]);
 
 
-                } else if (arr[0].equalsIgnoreCase("add")) {
+                }
+                if (arr[0].equalsIgnoreCase("add")) {
                     inv.add(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
 
-
-                } else if (arr[0].equalsIgnoreCase("remove")) {
+                }
+                if (arr[0].equalsIgnoreCase("remove")) {
                     inv.remove(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
 
 
-                } else if (arr[0].equalsIgnoreCase("list")) {
+                }
+                if (arr[0].equalsIgnoreCase("list")) {
                     inv.list();
 
 
                 }
 
 
-            }catch (NumberFormatException e){
-                System.out.println("Wrong format. Please enter a long");
-
-
-            }catch(ArrayIndexOutOfBoundsException e){
+            } catch (Exception e) {
                 System.out.println("Invalid command");
+
 
             }
         }
@@ -100,10 +100,10 @@ public class InvTracker {
     }
 
     public void add(long num, int n) {
-        System.out.println("add activated!");
         for (InvItem s : items) {
             if (s.getId() == num) {
                 s.add(n);
+
 
 
             } else {
@@ -115,7 +115,7 @@ public class InvTracker {
                     newSize[i] = items[i];
                     //put newly sized array into old array
                     items = newSize;
-
+                    return;
 
 
                 }
@@ -158,8 +158,6 @@ public class InvTracker {
 
         }
     }
-
-
 
 
 }
