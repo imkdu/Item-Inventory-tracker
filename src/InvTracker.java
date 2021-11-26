@@ -1,4 +1,4 @@
-//KEVIN DU, 11/01/2021
+//KEVIN DU, 11/26/2021
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class InvTracker {
     InvItem[] items;
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner;
     StringTokenizer st;
 
     public InvTracker() {
@@ -15,71 +15,33 @@ public class InvTracker {
     }
 
     public static void main(String[] args) {
-
-
-        InvTracker inv = new InvTracker();
-        Scanner scanner = new Scanner(System.in);
-
-
-        //"method()" [value1] [value2]
+        InvTracker tracker = new InvTracker();
         while (true) {
-            String[] arr = new String[3];
-            String input = scanner.nextLine();
-            StringTokenizer st = new StringTokenizer(input, " ");
-            int numTokens = st.countTokens();
-
             try {
-                if (numTokens > 3) {
-                    throw new ArrayIndexOutOfBoundsException();
-
-
-                }
-                //while st has more tokens, store them in the array, so we can call the elements later
-
-                for (int i = 0; i < numTokens; i++) {
-
-
-                    arr[i] = st.nextToken();
-
-
-                    if (!"name".equals(arr[0]) && !"add".equals(arr[0]) && !"remove".equals(arr[0]) && !"list".equals(arr[0])) {
-                        throw new ArrayIndexOutOfBoundsException();
-
-                    }
-
-
-                }
-
-
-                if (arr[0].equalsIgnoreCase("name")) {
-                    inv.name(Long.parseLong(arr[1]), arr[2]);
-
-
-                }
-                if (arr[0].equalsIgnoreCase("add")) {
-                    inv.add(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
-
-                }
-                if (arr[0].equalsIgnoreCase("remove")) {
-                    inv.remove(Long.parseLong(arr[1]), Integer.parseInt(arr[2]));
-
-
-                }
-                if (arr[0].equalsIgnoreCase("list")) {
-                    inv.list();
-
-
-                }
-
-
+                System.out.print("please enter your command\n>");
+                String s = tracker.scanner.nextLine();
+                tracker.st = new StringTokenizer(s);
+                String t = tracker.st.nextToken();
+                if (t.equals("list")) tracker.list();
+                else if (t.equals("add")) {
+                    String u = tracker.st.nextToken();
+                    String v = tracker.st.nextToken();
+                    tracker.add(Long.parseLong(u), Integer.parseInt(v));
+                } else if (t.equals("name")) {
+                    String u = tracker.st.nextToken();
+                    String v = tracker.st.nextToken();
+                    tracker.name(Long.parseLong(u), v);
+                } else if (t.equals("remove")) {
+                    String u = tracker.st.nextToken();
+                    String v = tracker.st.nextToken();
+                    tracker.remove(Long.parseLong(u), Integer.parseInt(v));
+                } else if (t.equals("exit")) System.exit(0);
+                else throw new Exception();
             } catch (Exception e) {
-                System.out.println("Invalid command");
-
-
+                System.out.println("invalid command");
             }
+            System.out.println();
         }
-
-
     }
 
 
@@ -99,32 +61,30 @@ public class InvTracker {
 
     }
 
-    public void add(long num, int n) {
-        for (InvItem s : items) {
-            if (s.getId() == num) {
-                s.add(n);
 
-
-
-            } else {
-                new InvItem(num).add(n);
-                InvItem[] newSize = new InvItem[items.length + 1];
-                //create new Array with size of original array+1
-                //loop will copy everything from items into newSize
-                for (int i = 0; i < items.length; i++) {
-                    newSize[i] = items[i];
-                    //put newly sized array into old array
-                    items = newSize;
-                    return;
-
-
+    void add(long id, int amount) {
+        boolean isFound = false;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].getId() == id) {
+                isFound = true;
+                try {
+                    items[i].add(amount);
+                } catch (Exception e) {
+                    System.out.println("invalid quantity change");
                 }
-
-
+                return;
             }
-
         }
-
+        InvItem item = new InvItem(id);
+        try {
+            item.add(amount);
+            InvItem[] items2 = new InvItem[items.length + 1];
+            for (int j = 0; j < items.length; j++) items2[j] = items[j];
+            items2[items.length] = item;
+            items = items2;
+        } catch (Exception e) {
+            System.out.println("invalid quantity change");
+        }
     }
 
     public void remove(long num, int n) {
@@ -211,12 +171,18 @@ class InvItem {
     }
 
     public void add(int add) {
-        this.quantity += add;
+        if (this.quantity + add > 9999 || this.quantity + add < 1) {
+            System.out.println("invalid quantity change");
+
+        } else quantity += add;
 
     }
 
     public void drop(int drop) {
-        this.quantity -= drop;
+        if (this.quantity + drop > 9999 || this.quantity + drop < 1) {
+            System.out.println("invalid quantity change");
+
+        } else quantity += drop;
 
 
     }
